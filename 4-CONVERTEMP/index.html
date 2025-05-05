@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Conversor de Temperatura</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f0ff;
+      color: #003366;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 51, 102, 0.2);
+      text-align: center;
+      width: 350px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #003366;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #resultado {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Conversor de Temperatura</h1>
+
+    <div class="form-group">
+      <label for="valor">Temperatura:</label>
+      <input type="number" id="valor" placeholder="Digite o valor">
+    </div>
+
+    <div class="form-group">
+      <label for="origem">Converter de:</label>
+      <select id="origem">
+        <option value="C">Celsius</option>
+        <option value="F">Fahrenheit</option>
+        <option value="K">Kelvin</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="destino">Para:</label>
+      <select id="destino">
+        <option value="C">Celsius</option>
+        <option value="F">Fahrenheit</option>
+        <option value="K">Kelvin</option>
+      </select>
+    </div>
+
+    <button onclick="converterTemperatura()">Converter</button>
+
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function converterTemperatura() {
+      const valor = parseFloat(document.getElementById("valor").value);
+      const origem = document.getElementById("origem").value;
+      const destino = document.getElementById("destino").value;
+
+      if (isNaN(valor)) {
+        document.getElementById("resultado").textContent = "Digite um valor válido.";
+        return;
+      }
+
+      let resultado;
+
+      if (origem === destino) {
+        resultado = valor;
+      } else {
+        // Convertendo primeiro para Celsius
+        let celsius;
+        if (origem === "C") celsius = valor;
+        else if (origem === "F") celsius = (valor - 32) * 5 / 9;
+        else if (origem === "K") celsius = valor - 273.15;
+
+        // Convertendo de Celsius para destino
+        if (destino === "C") resultado = celsius;
+        else if (destino === "F") resultado = (celsius * 9 / 5) + 32;
+        else if (destino === "K") resultado = celsius + 273.15;
+      }
+
+      document.getElementById("resultado").textContent = 
+        `Resultado: ${resultado.toFixed(2)} °${destino}`;
+    }
+  </script>
+</body>
+</html>

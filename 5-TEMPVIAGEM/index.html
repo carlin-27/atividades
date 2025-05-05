@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Tempo de Viagem</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f0ff;
+      color: #003366;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 51, 102, 0.2);
+      text-align: center;
+      width: 350px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #003366;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #resultado {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Calculadora de Tempo de Viagem</h1>
+
+    <div class="form-group">
+      <label for="distancia">Distância (km):</label>
+      <input type="number" id="distancia" placeholder="Ex: 150">
+    </div>
+
+    <div class="form-group">
+      <label for="velocidade">Velocidade média (km/h):</label>
+      <input type="number" id="velocidade" placeholder="Ex: 80">
+    </div>
+
+    <button onclick="calcularTempo()">Calcular Tempo</button>
+
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function calcularTempo() {
+      const distancia = parseFloat(document.getElementById("distancia").value);
+      const velocidade = parseFloat(document.getElementById("velocidade").value);
+
+      if (isNaN(distancia) || isNaN(velocidade) || velocidade <= 0) {
+        document.getElementById("resultado").textContent = "Preencha os campos corretamente.";
+        return;
+      }
+
+      const tempoHoras = distancia / velocidade;
+      const horas = Math.floor(tempoHoras);
+      const minutos = Math.round((tempoHoras - horas) * 60);
+
+      document.getElementById("resultado").textContent = 
+        `Tempo estimado: ${horas}h ${minutos}min`;
+    }
+  </script>
+</body>
+</html>

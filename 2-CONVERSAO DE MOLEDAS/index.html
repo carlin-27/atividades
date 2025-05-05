@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Conversor de Moedas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f0ff;
+      color: #003366;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 51, 102, 0.2);
+      text-align: center;
+      width: 300px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #003366;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #resultado {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Conversor de Moedas</h1>
+    <div class="form-group">
+      <label for="amount">Valor (em BRL):</label>
+      <input type="number" id="amount" placeholder="Digite o valor">
+    </div>
+    <div class="form-group">
+      <label for="currency">Converter para:</label>
+      <select id="currency">
+        <option value="USD">Dólar (USD)</option>
+        <option value="EUR">Euro (EUR)</option>
+        <option value="GBP">Libra (GBP)</option>
+      </select>
+    </div>
+    <button onclick="converter()">Converter</button>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function converter() {
+      const valor = parseFloat(document.getElementById("amount").value);
+      const moeda = document.getElementById("currency").value;
+      let taxa = 0;
+
+      switch (moeda) {
+        case "USD":
+          taxa = 0.20; // Exemplo de taxa fixa
+          break;
+        case "EUR":
+          taxa = 0.18;
+          break;
+        case "GBP":
+          taxa = 0.16;
+          break;
+      }
+
+      if (isNaN(valor)) {
+        document.getElementById("resultado").textContent = "Por favor, insira um valor válido.";
+        return;
+      }
+
+      const convertido = valor * taxa;
+      document.getElementById("resultado").textContent = 
+        `Valor convertido: ${convertido.toFixed(2)} ${moeda}`;
+    }
+  </script>
+</body>
+</html>

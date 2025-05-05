@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Par ou Ímpar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f0ff;
+      color: #003366;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 51, 102, 0.2);
+      text-align: center;
+      width: 300px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #003366;
+      border-radius: 5px;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #resultado {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Par ou Ímpar</h1>
+    <input type="number" id="numero" placeholder="Digite um número">
+    <button onclick="verificarParOuImpar()">Verificar</button>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function verificarParOuImpar() {
+      const numero = parseInt(document.getElementById("numero").value);
+
+      if (isNaN(numero)) {
+        document.getElementById("resultado").textContent = "Digite um número válido.";
+        return;
+      }
+
+      const resultado = (numero % 2 === 0) ? "Par" : "Ímpar";
+
+      document.getElementById("resultado").textContent = `O número ${numero} é ${resultado}.`;
+    }
+  </script>
+</body>
+</html>
